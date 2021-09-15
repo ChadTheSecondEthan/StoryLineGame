@@ -22,7 +22,7 @@ public class Menu extends GameState {
         playButton.addOnClickListener(() -> Game.setState("InGame"));
 
         Button quitButton = findEntityByName("quit_button");
-        quitButton.setY(Window.getHeight() - 200 - playButton.getHeight());
+        quitButton.setY(Window.getHeight() - 200 - quitButton.getHeight());
         quitButton.addOnClickListener(() -> System.exit(0));
 
         Button helpButton = findEntityByName("help_button");
