@@ -1,0 +1,5 @@
+<GameState>
+    <ui.Button width="200" height="100" name="play_button" />
+    <ui.Button width="200" height="100" name="quit_button" />
+    <ui.Button width="200" height="100" name="help_button" />
+</GameState>
