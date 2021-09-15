@@ -1,0 +1,3 @@
+<GameState>
+    <ui.Text center-x="true" center-y="true" text="Hello" />
+</GameState>
