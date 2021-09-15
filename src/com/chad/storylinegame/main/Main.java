@@ -7,9 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         Game.init("Story Line Game");
-
         Game.setStates(new Menu(), new InGame());
-
         Game.start(0);
     }
 
