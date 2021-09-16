@@ -8,24 +8,23 @@ import com.chad.storylinegame.entity.Player;
 
 public class InGame extends GameState {
 
-    private final Player player;
     private final TileMap tileMap;
+    private final Player player;
 
     public InGame() {
         super();
 
         readEntitiesFromFile("state/ingame.txt");
 
-        player = new Player();
-        player.spawn();
-
         tileMap = findEntityByName("tilemap");
         tileMap.setSpritesheet(new Spritesheet("sprites/spritesheet.png", 512 / 8));
+        tileMap.setCollisionTypes(new short[] { 10 });
+
+        player = new Player(tileMap);
+        player.spawn();
     }
 
     @Override
-    public void init() {
-
-    }
+    public void init() {}
 
 }

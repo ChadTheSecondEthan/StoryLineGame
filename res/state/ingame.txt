@@ -1,3 +1,3 @@
 <GameState>
-    <tile.TileMap src="tilemap/tilemap.txt" width="500" height="500" name="tilemap" />
+    <tile.TileMap src="tilemap/tilemap.txt" name="tilemap" />
 </GameState>
