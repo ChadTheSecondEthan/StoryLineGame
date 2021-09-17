@@ -27,4 +27,9 @@ public class InGame extends GameState {
     @Override
     public void init() {}
 
+    @Override
+    public void draw() {
+        super.draw();
+    }
+
 }

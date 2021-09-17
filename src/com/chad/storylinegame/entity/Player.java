@@ -3,52 +3,52 @@ package com.chad.storylinegame.entity;
 import com.chad.engine.Window;
 import com.chad.engine.entity.ColorRenderer;
 import com.chad.engine.entity.Entity;
+import com.chad.engine.gfx.Camera;
+import com.chad.engine.gfx.Renderer;
 import com.chad.engine.tile.TileMap;
 import com.chad.engine.utils.Keyboard;
-import com.chad.engine.utils.Rectf;
+import com.chad.engine.utils.Vector2;
 
 import java.awt.Color;
 
 public class Player extends Entity {
 
-    enum Direction { UP, DOWN, LEFT, RIGHT, NONE }
-
     private static final float VELOCITY = 300;
 
     private final TileMap tileMap;
-    private Direction dir;
+    private final Camera camera;
 
     public Player(TileMap tileMap) {
         super();
 
         this.tileMap = tileMap;
+        this.camera = new Camera();
+        Renderer.camera = this.camera;
 
         width = height = 50;
         drawable = new ColorRenderer(Color.green);
-
-        dir = Direction.NONE;
     }
 
     @Override
     public void update(float dt) {
 
         // movement
-        if (Keyboard.UP.down()) {
-            setRelativeY(getRelativeY() - VELOCITY * dt);
-            dir = Direction.UP;
-        }
-        if (Keyboard.RIGHT.down()) {
-            setRelativeX(getRelativeX() + VELOCITY * dt);
-            dir = Direction.RIGHT;
-        }
-        if (Keyboard.DOWN.down()) {
-            setRelativeY(getRelativeY() + VELOCITY * dt);
-            dir = Direction.DOWN;
-        }
-        if (Keyboard.LEFT.down()) {
-            setRelativeX(getRelativeX() - VELOCITY * dt);
-            dir = Direction.LEFT;
-        }
+        float dx = 0;
+        float dy = 0;
+        if (Keyboard.UP.down())
+            dy += - VELOCITY * dt;
+        if (Keyboard.RIGHT.down())
+            dx += VELOCITY * dt;
+        if (Keyboard.DOWN.down())
+            dy += VELOCITY * dt;
+        if (Keyboard.LEFT.down())
+            dx += -VELOCITY * dt;
+
+        Renderer.camera.x += dx;
+        Renderer.camera.y += dy;
+
+        setRelativeX(getRelativeX() + dx);
+        setRelativeY(getRelativeY() + dy);
 
         // collisions x
         if (getX() + width > Window.getWidth())
